@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name — Human on the Internet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;0,900;1,300;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --yellow:  #FFD54F;
+      --green:   #69F0AE;
+      --teal:    #00BCD4;
+      --coral:   #FF6B6B;
+      --ink:     #1A1A2E;
+      --ink2:    #2D2D44;
+      --paper:   #FAFAF5;
+      --muted:   #6B6B8A;
+      --border:  rgba(26,26,46,0.12);
+      --serif:   'Fraunces', Georgia, serif;
+      --sans:    'DM Sans', sans-serif;
+      --mono:    'DM Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(250,250,245,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-weight: 900;
+      font-size: 1.25rem;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 6vw 4rem;
+      gap: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* big background blob */
+    #hero::before {
+      content: '';
+      position: absolute;
+      width: 700px; height: 700px;
+      right: -180px; top: -100px;
+      background: radial-gradient(circle at 40% 40%, var(--yellow) 0%, var(--green) 55%, transparent 75%);
+      border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+      opacity: 0.35;
+      animation: blobMorph 8s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+
+    @keyframes blobMorph {
+      0%   { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; transform: rotate(0deg) scale(1); }
+      100% { border-radius: 40% 60% 45% 55% / 60% 40% 50% 50%; transform: rotate(8deg) scale(1.06); }
+    }
+
+    .hero-text { position: relative; z-index: 1; }
+    .hero-tag {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--teal);
+    }
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 460px;
+      line-height: 1.75;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+    .hero-sub strong { color: var(--ink); font-weight: 600; }
+    .hero-cta {
+      margin-top: 2.5rem;
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      text-decoration: none;
+      padding: 0.75rem 1.75rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .btn-primary { background: var(--ink); color: var(--paper); }
+    .btn-outline {
+      border: 2px solid var(--ink);
+      color: var(--ink);
+      background: transparent;
+    }
+    .btn-outline:hover { background: var(--ink); color: var(--paper); }
+
+    .hero-visual {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; gap: 1rem;
+      animation: fadeUp 0.8s 0.25s ease both;
+    }
+
+    /* Stat cards in hero */
+    .stat-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .stat-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.4rem 1.2rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
+    }
+    .stat-card:hover { transform: translateY(-4px); }
+    .stat-card:nth-child(1) { border-top: 4px solid var(--yellow); }
+    .stat-card:nth-child(2) { border-top: 4px solid var(--green); }
+    .stat-card:nth-child(3) { border-top: 4px solid var(--teal); }
+    .stat-card:nth-child(4) { border-top: 4px solid var(--coral); }
+    .stat-number {
+      font-family: var(--serif);
+      font-weight: 900;
+      font-size: 2rem;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+    .stat-label {
+      margin-top: 0.3rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 6vw; }
+    .section-header {
+      display: flex; align-items: baseline; gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .section-num {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+    .section-title span { color: var(--teal); }
+
+    /* ── ABOUT ── */
+    #about { background: var(--ink); color: var(--paper); }
+    #about .section-title span { color: var(--yellow); }
+    #about .section-num { color: rgba(255,255,255,0.4); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-facts { display: flex; flex-direction: column; gap: 1.2rem; }
+    .fact-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1.2rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .fact-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .fact-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
+    .fact-desc { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+
+    .about-prose p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 1.2rem;
+    }
+    .about-prose p strong { color: var(--yellow); font-weight: 600; }
+    .about-prose p:first-child { font-size: 1.3rem; color: var(--paper); font-family: var(--serif); font-style: italic; }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--paper); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex; flex-direction: column;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    }
+    .project-card-top {
+      height: 160px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+    }
+    .project-card-top.y { background: linear-gradient(135deg, var(--yellow), #FFA726); }
+    .project-card-top.g { background: linear-gradient(135deg, var(--green), var(--teal)); }
+    .project-card-top.c { background: linear-gradient(135deg, var(--coral), #E040FB); }
+    .project-card-top.t { background: linear-gradient(135deg, var(--teal), #1A237E); }
+    .project-card-top.w { background: linear-gradient(135deg, #B2EBF2, var(--green)); }
+    .project-card-top.p { background: linear-gradient(135deg, #FCE4EC, var(--coral)); }
+
+    .project-card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .project-tag {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .project-name {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+    }
+    .project-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; flex: 1; }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      margin-top: 1.2rem;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: gap 0.15s;
+    }
+    .project-link:hover { gap: 0.7rem; }
+
+    /* ── VIDEOS ── */
+    #videos { background: #F0FFF4; }
+    .videos-intro {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin-bottom: 3rem;
+      line-height: 1.75;
+    }
+    .videos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .video-card {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #fff;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .video-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.1); }
+    .video-thumb {
+      position: relative;
+      height: 140px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+    }
+    .video-thumb.v1 { background: linear-gradient(135deg, #1A1A2E, #16213E); }
+    .video-thumb.v2 { background: linear-gradient(135deg, #0D4F3C, #1A7A5C); }
+    .video-thumb.v3 { background: linear-gradient(135deg, #4A0E4E, #7B1FA2); }
+
+    .play-btn {
+      position: absolute;
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      padding-left: 3px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .video-info { padding: 1rem; }
+    .video-title { font-weight: 600; font-size: 0.9rem; line-height: 1.4; margin-bottom: 0.4rem; }
+    .video-meta { font-size: 0.75rem; color: var(--muted); font-family: var(--mono); }
+
+    /* ── WRITING ── */
+    #writing { background: var(--paper); }
+    .posts-list { display: flex; flex-direction: column; gap: 0; }
+    .post-item {
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      align-items: center;
+      gap: 2rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--ink);
+      transition: background 0.15s;
+    }
+    .post-item:first-child { border-top: 1px solid var(--border); }
+    .post-item:hover { padding-left: 0.5rem; padding-right: 0.5rem; }
+    .post-date {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+    .post-title-wrap .post-tag {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--teal);
+      font-weight: 500;
+    }
+    .post-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+    .post-arrow { font-size: 1.2rem; color: var(--muted); transition: transform 0.15s; }
+    .post-item:hover .post-arrow { transform: translateX(4px); color: var(--ink); }
+
+    /* ── NEWSLETTER ── */
+    #newsletter {
+      background: var(--ink);
+      color: var(--paper);
+      text-align: center;
+      padding: 6rem 6vw;
+    }
+    #newsletter .section-title { color: var(--paper); }
+    #newsletter .section-title span { color: var(--green); }
+    .newsletter-sub {
+      color: rgba(255,255,255,0.55);
+      font-size: 1.05rem;
+      max-width: 500px;
+      margin: 1rem auto 2.5rem;
+      line-height: 1.7;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 0.75rem;
+      max-width: 480px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .newsletter-input {
+      flex: 1;
+      min-width: 220px;
+      padding: 0.85rem 1.2rem;
+      border-radius: 8px;
+      border: none;
+      background: rgba(255,255,255,0.1);
+      color: var(--paper);
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      outline: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: border-color 0.2s;
+    }
+    .newsletter-input:focus { border-color: var(--green); }
+    .newsletter-input::placeholder { color: rgba(255,255,255,0.3); }
+    .btn-green { background: var(--green); color: var(--ink); font-weight: 700; }
+    .btn-green:hover { background: #4dd98a; transform: translateY(-2px); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--paper); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-intro {
+      font-size: 1.1rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .social-links { display: flex; flex-direction: column; gap: 1rem; }
+    .social-link {
+      display: flex; align-items: center; gap: 1rem;
+      text-decoration: none;
+      color: var(--ink);
+      padding: 1rem 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      font-weight: 500;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .social-link:hover { transform: translateX(4px); box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+    .social-icon { font-size: 1.4rem; width: 32px; text-align: center; }
+    .social-handle { font-family: var(--mono); font-size: 0.85rem; color: var(--muted); margin-left: auto; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-field label { font-size: 0.85rem; font-weight: 600; color: var(--ink); }
+    .form-field input,
+    .form-field textarea {
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      background: #fff;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-field input:focus,
+    .form-field textarea:focus { border-color: var(--teal); }
+    .form-field textarea { resize: vertical; min-height: 130px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink2);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.82rem;
+      font-family: var(--mono);
+      letter-spacing: 0.04em;
+    }
+    footer span { color: var(--green); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; min-height: auto; padding-top: 7rem; }
+      .hero-visual { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .videos-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0.75rem 1.2rem; }
+      .nav-links { gap: 1rem; }
+      section { padding: 4rem 1.5rem; }
+      #hero { padding: 6rem 1.5rem 3rem; }
+      .projects-grid, .videos-grid { grid-template-columns: 1fr; }
+      .post-item { grid-template-columns: 1fr; gap: 0.4rem; }
+      .post-date, .post-arrow { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">Your Name</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#videos">Videos</a></li>
+      <li><a href="#writing">Writing</a></li>
+      <li><a href="#contact">Say Hi</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-text">
+      <span class="hero-tag">👋 Human on the internet</span>
+      <h1 class="hero-title">
+        Hi, I'm<br />
+        <em>Your Name</em><br />
+        Nice to meet you!
+      </h1>
+      <p class="hero-sub">
+        I make things, explain things, and occasionally break things.
+        Passionate about <strong>science</strong>, <strong>technology</strong>,
+        and figuring out how the world actually works.
+      </p>
+      <div class="hero-cta">
+        <a href="#about" class="btn btn-primary">Learn more ↓</a>
+        <a href="#contact" class="btn btn-outline">Say hello</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-number">42k</div>
+          <div class="stat-label">YouTube subs</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">312</div>
+          <div class="stat-label">Videos made</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Projects live</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Good dog</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header reveal">
+      <span class="section-num">01</span>
+      <h2 class="section-title">The <span>whole story</span></h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-facts reveal">
+        <div class="fact-item">
+          <div class="fact-icon">🌍</div>
+          <div>
+            <div class="fact-title">Based in</div>
+            <div class="fact-desc">Your City, Country — where the coffee is great and the Wi-Fi is questionable.</div>
+          </div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-icon">🎓</div>
+          <div>
+            <div class="fact-title">Background</div>
+            <div class="fact-desc">Degree in Something Cool, minored in Staying Up Too Late Reading Wikipedia.</div>
+          </div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-icon">💡</div>
+          <div>
+            <div class="fact-title">Currently</div>
+            <div class="fact-desc">Working on a project that might change everything or at least mildly entertain six people.</div>
+          </div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-icon">🎵</div>
+          <div>
+            <div class="fact-title">Fun fact</div>
+            <div class="fact-desc">I can name every element on the periodic table and have used this power exactly zero times.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-prose reveal">
+        <p>
+          "I'm just a person trying to make sense of the world, one curiosity at a time."
+        </p>
+        <p>
+          I started making content because I genuinely couldn't stop thinking about interesting things and needed somewhere to put all those thoughts. Turns out, the internet is great for that. Also for cat videos, but that's beside the point.
+        </p>
+        <p>
+          My work sits at the intersection of <strong>science, technology, and storytelling</strong> — I believe the best explanations aren't just accurate, they're delightful. If I can make someone go "whoa, I never thought about it that way," that's a good day.
+        </p>
+        <p>
+          Outside of the internet, I spend my time reading books I probably won't finish, attempting to understand things that are way outside my expertise, and occasionally going outside. You know, for the vitamin D.
+        </p>
+        <a href="#projects" class="btn btn-outline" style="margin-top:1rem; border-color: rgba(255,255,255,0.3); color: var(--paper);">See what I've built →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Things I've <span>built</span></h2>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-card-top y">🔬</div>
+        <div class="project-card-body">
+          <div class="project-tag">Web App</div>
+          <div class="project-name">Science Explainer</div>
+          <div class="project-desc">An interactive tool that turns complex scientific concepts into bite-sized, actually understandable chunks. No PhD required.</div>
+          <a href="#" class="project-link">View project →</a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-card-top g">🌱</div>
+        <div class="project-card-body">
+          <div class="project-tag">Open Source</div>
+          <div class="project-name">The Green Index</div>
+          <div class="project-desc">A data visualization project tracking sustainability metrics for cities worldwide. Because numbers matter when it's the planet.</div>
+          <a href="#" class="project-link">View project →</a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-card-top c">🎙️</div>
+        <div class="project-card-body">
+          <div class="project-tag">Podcast</div>
+          <div class="project-name">Stuff That Matters</div>
+          <div class="project-desc">Weekly conversations with people doing interesting things. Not always famous, but always fascinating.</div>
+          <a href="#" class="project-link">Listen now →</a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-card-top t">🤖</div>
+        <div class="project-card-body">
+          <div class="project-tag">Tool</div>
+          <div class="project-name">Curiosity Engine</div>
+          <div class="project-desc">An AI-powered tool that generates rabbit holes. You type one thing and emerge three hours later knowing way too much about something adjacent.</div>
+          <a href="#" class="project-link">Try it →</a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-card-top w">📊</div>
+        <div class="project-card-body">
+          <div class="project-tag">Research</div>
+          <div class="project-name">Annual Report: The Internet</div>
+          <div class="project-desc">My yearly deep dive into what's happening online, where things are going, and whether we should be worried (spoiler: a little).</div>
+          <a href="#" class="project-link">Read it →</a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-card-top p">📚</div>
+        <div class="project-card-body">
+          <div class="project-tag">Writing</div>
+          <div class="project-name">The Book</div>
+          <div class="project-desc">Yes, I wrote a book. It's about [topic]. It has pages and everything. People seem to like it, which is wild.</div>
+          <a href="#" class="project-link">Get a copy →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section id="videos">
+    <div class="section-header reveal">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Recent <span>videos</span></h2>
+    </div>
+    <p class="videos-intro reveal">
+      I make videos because some ideas are just better with a face attached to them. Also because I can't stop talking.
+      <a href="https://youtube.com/@yourchannel" target="_blank" style="color: var(--teal); font-weight: 600;">Subscribe on YouTube →</a>
+    </p>
+    <div class="videos-grid">
+
+      <div class="video-card reveal">
+        <div class="video-thumb v1">
+          🌌
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="video-info">
+          <div class="video-title">Why Black Holes Aren't What You Think They Are</div>
+          <div class="video-meta">12:34 · 2.4M views</div>
+        </div>
+      </div>
+
+      <div class="video-card reveal">
+        <div class="video-thumb v2">
+          🦠
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="video-info">
+          <div class="video-title">The Invisible World Living On Your Face Right Now</div>
+          <div class="video-meta">8:47 · 1.1M views</div>
+        </div>
+      </div>
+
+      <div class="video-card reveal">
+        <div class="video-thumb v3">
+          🧠
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="video-info">
+          <div class="video-title">How Your Brain Tricks You Every Single Day</div>
+          <div class="video-meta">15:22 · 3.7M views</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WRITING -->
+  <section id="writing">
+    <div class="section-header reveal">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Things I've <span>written</span></h2>
+    </div>
+    <div class="posts-list">
+
+      <a href="#" class="post-item reveal">
+        <div class="post-date">Mar 2026</div>
+        <div class="post-title-wrap">
+          <div class="post-tag">Essay</div>
+          <div class="post-title">The Internet Is Still Weird, Thank God</div>
+        </div>
+        <div class="post-arrow">→</div>
+      </a>
+
+      <a href="#" class="post-item reveal">
+        <div class="post-date">Feb 2026</div>
+        <div class="post-title-wrap">
+          <div class="post-tag">Science</div>
+          <div class="post-title">Everything We Got Wrong About [Major Topic] and Why That's Actually Good News</div>
+        </div>
+        <div class="post-arrow">→</div>
+      </a>
+
+      <a href="#" class="post-item reveal">
+        <div class="post-date">Jan 2026</div>
+        <div class="post-title-wrap">
+          <div class="post-tag">Opinion</div>
+          <div class="post-title">In Defense of Knowing Things Just For Fun</div>
+        </div>
+        <div class="post-arrow">→</div>
+      </a>
+
+      <a href="#" class="post-item reveal">
+        <div class="post-date">Dec 2025</div>
+        <div class="post-title-wrap">
+          <div class="post-tag">Year in Review</div>
+          <div class="post-title">2025: A Year of Excellent and Terrible Things</div>
+        </div>
+        <div class="post-arrow">→</div>
+      </a>
+
+      <a href="#" class="post-item reveal">
+        <div class="post-date">Nov 2025</div>
+        <div class="post-title-wrap">
+          <div class="post-tag">Technology</div>
+          <div class="post-title">The Surprisingly Long History of Buttons (and What They Say About Us)</div>
+        </div>
+        <div class="post-arrow">→</div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section id="newsletter">
+    <div class="section-header reveal" style="justify-content: center; margin-bottom: 0;">
+      <h2 class="section-title">Let's stay in <span>touch</span></h2>
+    </div>
+    <p class="newsletter-sub reveal">
+      I send a newsletter when I have something genuinely worth saying.
+      That means roughly twice a month. No spam, no fluff, just
+      actual ideas.
+    </p>
+    <form class="newsletter-form reveal" onsubmit="handleSubscribe(event)">
+      <input
+        type="email"
+        class="newsletter-input"
+        placeholder="your@email.com"
+        required
+        id="emailInput"
+      />
+      <button type="submit" class="btn btn-green">Subscribe ✉️</button>
+    </form>
+    <p id="subscribeMsg" style="margin-top: 1rem; color: var(--green); font-size: 0.9rem; display: none;">
+      🎉 You're in! Check your inbox for a confirmation.
+    </p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header reveal">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Say <span>hello</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-intro reveal">
+          I genuinely love hearing from people. Whether you want to collaborate,
+          ask a question, or just tell me something interesting you learned —
+          my inbox is open.
+        </p>
+        <div class="social-links reveal">
+          <a href="https://youtube.com/@yourchannel" target="_blank" class="social-link">
+            <span class="social-icon">📺</span>
+            YouTube
+            <span class="social-handle">@yourchannel</span>
+          </a>
+          <a href="https://twitter.com/yourhandle" target="_blank" class="social-link">
+            <span class="social-icon">🐦</span>
+            Twitter / X
+            <span class="social-handle">@yourhandle</span>
+          </a>
+          <a href="https://instagram.com/yourhandle" target="_blank" class="social-link">
+            <span class="social-icon">📷</span>
+            Instagram
+            <span class="social-handle">@yourhandle</span>
+          </a>
+          <a href="https://github.com/yourusername" target="_blank" class="social-link">
+            <span class="social-icon">🐙</span>
+            GitHub
+            <span class="social-handle">@yourusername</span>
+          </a>
+          <a href="mailto:hello@yourname.com" class="social-link">
+            <span class="social-icon">✉️</span>
+            Email
+            <span class="social-handle">hello@yourname.com</span>
+          </a>
+        </div>
+      </div>
+
+      <form class="contact-form reveal" onsubmit="handleContact(event)">
+        <div class="form-field">
+          <label for="name">Your name</label>
+          <input type="text" id="name" placeholder="Jane Smith" required />
+        </div>
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="jane@example.com" required />
+        </div>
+        <div class="form-field">
+          <label for="message">What's on your mind?</label>
+          <textarea id="message" placeholder="Tell me something interesting..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="align-self: flex-start;">
+          Send it →
+        </button>
+        <p id="contactMsg" style="color: var(--teal); font-size: 0.9rem; display: none;">
+          ✅ Got it! I'll reply soon.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    Made with ☕ + genuine curiosity ·
+    <span>Your Name</span> © 2026 ·
+    <a href="https://github.com/yourusername/yourusername.github.io" target="_blank" style="color: rgba(255,255,255,0.4); text-decoration: none;">view source</a>
+  </footer>
+
+  <script>
+    // ── Scroll Reveal ──
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // stagger siblings
+          const siblings = [...entry.target.parentElement.querySelectorAll('.reveal:not(.visible)')];
+          const idx = siblings.indexOf(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, idx * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // ── Newsletter ──
+    function handleSubscribe(e) {
+      e.preventDefault();
+      document.getElementById('subscribeMsg').style.display = 'block';
+      document.getElementById('emailInput').value = '';
+    }
+
+    // ── Contact ──
+    function handleContact(e) {
+      e.preventDefault();
+      document.getElementById('contactMsg').style.display = 'block';
+      e.target.reset();
+    }
+
+    // ── Smooth active nav ──
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 100) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--ink)' : '';
+      });
+    });
+  </script>
+</body>
+</html>
