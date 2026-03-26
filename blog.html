@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Jiessie Tie</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Filter row */
+    .filter-row {
+      display: flex;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: none;
+      border: none;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--light);
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.12s;
+    }
+
+    .filter-btn.active { color: var(--ink); }
+    .filter-btn:hover { color: var(--accent); }
+
+    /* Post list */
+    .post-list { display: flex; flex-direction: column; }
+
+    .post-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: baseline;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .post-row:first-child { border-top: 1px solid var(--rule); }
+
+    .post-row:hover .post-row-title { color: var(--accent); }
+
+    .post-row-cat {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--light);
+      margin-bottom: 0.25rem;
+    }
+
+    .post-row-title {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 500;
+      line-height: 1.3;
+      color: var(--ink);
+      transition: color 0.12s;
+      margin-bottom: 0.25rem;
+    }
+
+    .post-row-excerpt {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .post-row-meta {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .post-row-date {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--light);
+      white-space: nowrap;
+    }
+
+    .post-row-time {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--rule);
+    }
+
+    @media (max-width: 500px) {
+      .post-row { grid-template-columns: 1fr; }
+      .post-row-meta { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="index.html" class="nav-name">Jiessie Tie</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="page-top">
+    <div class="page-top-inner">
+      <div class="page-top-label">Blog</div>
+      <h1 class="page-top-title">Writing</h1>
+      <p class="page-top-sub">
+        Essays about science, grad school, and whatever I can't stop thinking about this week.
+        Honest, occasionally ranty, always earnest.
+      </p>
+    </div>
+  </div>
+
+  <div class="content-shell">
+
+    <div class="filter-row reveal">
+      <button class="filter-btn active" onclick="filter('all', this)">All</button>
+      <button class="filter-btn" onclick="filter('grad-life', this)">Grad Life</button>
+      <button class="filter-btn" onclick="filter('science-comm', this)">Science Comm</button>
+      <button class="filter-btn" onclick="filter('opinion', this)">Opinion</button>
+      <button class="filter-btn" onclick="filter('resources', this)">Resources</button>
+    </div>
+
+    <div class="post-list reveal" id="postList">
+
+      <a href="#" class="post-row" data-cat="grad-life">
+        <div>
+          <div class="post-row-cat">Grad Life</div>
+          <div class="post-row-title">The Impostor Syndrome Chronicles: A Field Guide</div>
+          <div class="post-row-excerpt">Everyone talks about impostor syndrome. Fewer people talk about what to actually do when you're in the middle of it.</div>
+        </div>
+        <div class="post-row-meta">
+          <div class="post-row-date">Mar 2026</div>
+          <div class="post-row-time">8 min</div>
+        </div>
+      </a>
+
+      <a href="#" class="post-row" data-cat="science-comm">
+        <div>
+          <div class="post-row-cat">Science Comm</div>
+          <div class="post-row-title">Explaining My Research to My Parents: An Ongoing Saga</div>
+          <div class="post-row-excerpt">Four years in, three different analogies, and my mum still introduces me as "the one who does stuff with cells."</div>
+        </div>
+        <div class="post-row-meta">
+          <div class="post-row-date">Feb 2026</div>
+          <div class="post-row-time">4 min</div>
+        </div>
+      </a>
+
+      <a href="#" class="post-row" data-cat="opinion">
+        <div>
+          <div class="post-row-cat">Opinion</div>
+          <div class="post-row-title">In Defense of Not Knowing Things (Yet)</div>
+          <div class="post-row-excerpt">There's enormous pressure in academia to have all the answers. But the most interesting questions start with "I have no idea."</div>
+        </div>
+        <div class="post-row-meta">
+          <div class="post-row-date">Jan 2026</div>
+          <div class="post-row-time">6 min</div>
+        </div>
+      </a>
+
+      <a href="#" class="post-row" data-cat="resources">
+        <div>
+          <div class="post-row-cat">Resources</div>
+          <div class="post-row-title">Actually Good Resources for First-Year PhD Students Nobody Told Me About</div>
+          <div class="post-row-excerpt">Tools, habits, and communities that genuinely helped — minus the advice you've already read on a thousand listicles.</div>
+        </div>
+        <div class="post-row-meta">
+          <div class="post-row-date">Dec 2025</div>
+          <div class="post-row-time">7 min</div>
+        </div>
+      </a>
+
+      <a href="#" class="post-row" data-cat="science-comm">
+        <div>
+          <div class="post-row-cat">Science Comm</div>
+          <div class="post-row-title">What a Conference Poster Taught Me About Communication</div>
+          <div class="post-row-excerpt">You have 90 seconds and a tired audience. Here's how I learned to make them care about my niche research question.</div>
+        </div>
+        <div class="post-row-meta">
+          <div class="post-row-date">Nov 2025</div>
+          <div class="post-row-time">5 min</div>
+        </div>
+      </a>
+
+      <a href="#" class="post-row" data-cat="grad-life">
+        <div>
+          <div class="post-row-cat">Grad Life</div>
+          <div class="post-row-title">The Experiment That Failed for 6 Months (And What I Did About It)</div>
+          <div class="post-row-excerpt">Failure is part of research. Nobody tells you it's also kind of philosophically interesting once you survive it.</div>
+        </div>
+        <div class="post-row-meta">
+          <div class="post-row-date">Oct 2025</div>
+          <div class="post-row-time">6 min</div>
+        </div>
+      </a>
+
+      <a href="#" class="post-row" data-cat="opinion">
+        <div>
+          <div class="post-row-cat">Opinion</div>
+          <div class="post-row-title">Why Every Scientist Should Write for Non-Scientists</div>
+          <div class="post-row-excerpt">It's not dumbing things down. It's a completely different skill — and it makes you a better researcher too.</div>
+        </div>
+        <div class="post-row-meta">
+          <div class="post-row-date">Sep 2025</div>
+          <div class="post-row-time">5 min</div>
+        </div>
+      </a>
+
+      <a href="#" class="post-row" data-cat="resources">
+        <div>
+          <div class="post-row-cat">Resources</div>
+          <div class="post-row-title">My PhD Reading List: Year Three Edition</div>
+          <div class="post-row-excerpt">Papers that changed how I think, books that kept me sane, and one newsletter that always arrives at the right moment.</div>
+        </div>
+        <div class="post-row-meta">
+          <div class="post-row-date">Aug 2025</div>
+          <div class="post-row-time">4 min</div>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="inner">
+      <span>Jiessie Tie · <a href="mailto:jiessie@jiessie.science">jiessie@jiessie.science</a></span>
+      <span>
+        <a href="https://github.com/jiessietie" target="_blank">GitHub</a> ·
+        <a href="https://github.com/jiessietie/jiessietie.github.io" target="_blank">Source</a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    function filter(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.post-row').forEach(row => {
+        row.style.display = (cat === 'all' || row.dataset.cat === cat) ? 'grid' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>

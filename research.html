@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research — Jiessie Tie</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .pub-list { display: flex; flex-direction: column; gap: 1.75rem; }
+
+    .pub-entry { display: flex; gap: 1rem; }
+
+    .pub-year {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--light);
+      padding-top: 0.2rem;
+      flex-shrink: 0;
+      width: 36px;
+      text-align: right;
+    }
+
+    .pub-body { flex: 1; min-width: 0; }
+
+    .pub-title {
+      font-family: var(--serif);
+      font-size: 1.02rem;
+      font-weight: 500;
+      line-height: 1.35;
+      margin-bottom: 0.25rem;
+    }
+
+    .pub-title a { color: var(--ink); }
+    .pub-title a:hover { color: var(--accent); text-decoration: none; }
+
+    .pub-authors {
+      font-size: 0.83rem;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .pub-authors strong { color: var(--accent); font-weight: 500; }
+
+    .pub-venue {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 0.45rem;
+    }
+
+    .pub-abstract {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 0.45rem;
+      display: none; /* toggled by JS */
+    }
+
+    .pub-abstract.open { display: block; }
+
+    .pub-links { display: flex; flex-wrap: wrap; gap: 0.3rem; align-items: center; }
+
+    .pub-abstract-toggle {
+      background: none;
+      border: none;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--light);
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.12s;
+    }
+
+    .pub-abstract-toggle:hover { color: var(--accent); }
+
+    /* Talk list */
+    .talk-list { display: flex; flex-direction: column; gap: 0; }
+
+    .talk-item {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 1.5rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .talk-item:first-child { border-top: 1px solid var(--rule); }
+
+    .talk-date {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--light);
+      padding-top: 0.12rem;
+    }
+
+    .talk-title {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+
+    .talk-venue { font-size: 0.82rem; color: var(--muted); }
+
+    .talk-type {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.1rem 0.45rem;
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      margin-left: 0.4rem;
+      vertical-align: middle;
+      color: var(--muted);
+    }
+
+    @media (max-width: 500px) {
+      .pub-entry { flex-direction: column; gap: 0.4rem; }
+      .pub-year { width: auto; text-align: left; }
+      .talk-item { grid-template-columns: 1fr; gap: 0.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="index.html" class="nav-name">Jiessie Tie</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="page-top">
+    <div class="page-top-inner">
+      <div class="page-top-label">Research</div>
+      <h1 class="page-top-title">Publications &amp; work</h1>
+      <p class="page-top-sub">
+        My research sits at the intersection of [Area A] and [Area B].
+        I study [plain-language summary of your thesis question].
+      </p>
+    </div>
+  </div>
+
+  <div class="content-shell">
+
+    <!-- THESIS -->
+    <div class="content-section reveal">
+      <span class="section-label">Doctoral thesis</span>
+      <p style="font-family:var(--serif); font-size:1.12rem; font-weight:500; letter-spacing:-0.01em; line-height:1.4; margin-bottom:0.75rem;">
+        [Your Full Thesis Title Goes Here]
+      </p>
+      <p>
+        <em>Advised by <a href="#">Prof. [Advisor's Name]</a> · [Your University] · Expected [Year]</em>
+      </p>
+      <p style="margin-top:0.75rem;">
+        [Two to three sentences summarizing your thesis in plain language. What is the central
+        question? What methods or framework are you using? What do you hope to contribute
+        to the field?]
+      </p>
+    </div>
+
+    <!-- PUBLICATIONS -->
+    <div class="content-section reveal">
+      <span class="section-label">Publications</span>
+      <div class="pub-list">
+
+        <div class="pub-entry">
+          <div class="pub-year">2025</div>
+          <div class="pub-body">
+            <div class="pub-title">
+              <a href="#">[Full Title of Your First Paper]</a>
+            </div>
+            <div class="pub-authors">
+              <strong>J. Tie</strong>, A. Co-author, B. Co-author
+            </div>
+            <div class="pub-venue">[Journal Name], Vol. X, No. Y, pp. 1–20, 2025</div>
+            <div class="pub-abstract" id="abs1">
+              [Your abstract or a brief plain-language summary of what this paper is about,
+              what you found, and why it matters. This is hidden by default and shown when
+              the reader clicks "Abstract" below.]
+            </div>
+            <div class="pub-links">
+              <a href="#" class="paper-link">PDF</a>
+              <a href="#" class="paper-link">DOI</a>
+              <a href="#" class="paper-link">Code</a>
+              <a href="#" class="paper-link">Talk</a>
+              <button class="pub-abstract-toggle" onclick="toggleAbstract('abs1', this)">Abstract ↓</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-year">2025</div>
+          <div class="pub-body">
+            <div class="pub-title">
+              <a href="#">[Second Paper Title]</a>
+            </div>
+            <div class="pub-authors">
+              A. Co-author, <strong>J. Tie</strong>, C. Co-author
+            </div>
+            <div class="pub-venue">[Proceedings of Conference Name (CONF'25)], [City], 2025</div>
+            <div class="pub-abstract" id="abs2">
+              [Abstract or plain-language summary for this paper.]
+            </div>
+            <div class="pub-links">
+              <a href="#" class="paper-link">PDF</a>
+              <a href="#" class="paper-link">DOI</a>
+              <a href="#" class="paper-link">Slides</a>
+              <button class="pub-abstract-toggle" onclick="toggleAbstract('abs2', this)">Abstract ↓</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-year">2024</div>
+          <div class="pub-body">
+            <div class="pub-title">
+              <a href="#">[Third Paper Title — or a Preprint]</a>
+            </div>
+            <div class="pub-authors">
+              <strong>J. Tie</strong>, D. Co-author
+            </div>
+            <div class="pub-venue">Preprint · bioRxiv · Under review at [Journal]</div>
+            <div class="pub-abstract" id="abs3">
+              [Abstract or plain-language summary for this preprint.]
+            </div>
+            <div class="pub-links">
+              <a href="#" class="paper-link">Preprint</a>
+              <a href="#" class="paper-link">Code</a>
+              <a href="#" class="paper-link">Data</a>
+              <button class="pub-abstract-toggle" onclick="toggleAbstract('abs3', this)">Abstract ↓</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TALKS & POSTERS -->
+    <div class="content-section reveal">
+      <span class="section-label">Talks &amp; posters</span>
+      <div class="talk-list">
+
+        <div class="talk-item">
+          <div class="talk-date">Mar 2026</div>
+          <div>
+            <div class="talk-title">
+              [Talk Title] <span class="talk-type">Invited</span>
+            </div>
+            <div class="talk-venue">[Conference or Institution] · [City, Country]</div>
+          </div>
+        </div>
+
+        <div class="talk-item">
+          <div class="talk-date">Nov 2025</div>
+          <div>
+            <div class="talk-title">
+              [Poster Title] <span class="talk-type">Poster</span>
+            </div>
+            <div class="talk-venue">[Conference Name] · [City, Country]</div>
+          </div>
+        </div>
+
+        <div class="talk-item">
+          <div class="talk-date">Jun 2025</div>
+          <div>
+            <div class="talk-title">
+              [Oral Presentation Title] <span class="talk-type">Oral</span>
+            </div>
+            <div class="talk-venue">[Conference Name] · [City, Country]</div>
+          </div>
+        </div>
+
+        <div class="talk-item">
+          <div class="talk-date">Feb 2025</div>
+          <div>
+            <div class="talk-title">
+              [Departmental Talk Title] <span class="talk-type">Invited</span>
+            </div>
+            <div class="talk-venue">[Department], [University] · [City]</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- AWARDS -->
+    <div class="content-section reveal">
+      <span class="section-label">Grants &amp; awards</span>
+      <div class="talk-list">
+
+        <div class="talk-item">
+          <div class="talk-date">2026</div>
+          <div>
+            <div class="talk-title">[Fellowship or Grant Name]</div>
+            <div class="talk-venue">[Awarding Body]</div>
+          </div>
+        </div>
+
+        <div class="talk-item">
+          <div class="talk-date">2025</div>
+          <div>
+            <div class="talk-title">[Another Award or Scholarship]</div>
+            <div class="talk-venue">[Awarding Body]</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="inner">
+      <span>Jiessie Tie · <a href="mailto:jiessie@jiessie.science">jiessie@jiessie.science</a></span>
+      <span>
+        <a href="https://github.com/jiessietie" target="_blank">GitHub</a> ·
+        <a href="https://github.com/jiessietie/jiessietie.github.io" target="_blank">Source</a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    function toggleAbstract(id, btn) {
+      const el = document.getElementById(id);
+      el.classList.toggle('open');
+      btn.textContent = el.classList.contains('open') ? 'Abstract ↑' : 'Abstract ↓';
+    }
+  </script>
+</body>
+</html>

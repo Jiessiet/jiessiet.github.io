@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Jiessie Tie</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-intro { margin-bottom: 2rem; }
+
+    /* Social list */
+    .social-list { display: flex; flex-direction: column; gap: 0; }
+
+    .social-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 0.9rem;
+      transition: color 0.12s;
+    }
+
+    .social-row:first-child { border-top: 1px solid var(--rule); }
+    .social-row:hover { color: var(--accent); }
+
+    .social-row span:first-child { font-weight: 500; }
+
+    .social-handle {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--light);
+    }
+
+    /* Response note */
+    .response-note {
+      margin-top: 2rem;
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.65;
+      padding: 1rem;
+      border-left: 2px solid var(--rule);
+    }
+
+    @media (max-width: 640px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="index.html" class="nav-name">Jiessie Tie</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="page-top">
+    <div class="page-top-inner">
+      <div class="page-top-label">Contact</div>
+      <h1 class="page-top-title">Get in touch</h1>
+      <p class="page-top-sub">
+        I'm happy to hear from researchers, students, journalists,
+        or anyone with an interesting question.
+      </p>
+    </div>
+  </div>
+
+  <div class="content-shell">
+    <div class="contact-grid">
+
+      <!-- LEFT -->
+      <div>
+        <div class="content-section reveal">
+          <span class="section-label">Reach me</span>
+          <div class="contact-intro">
+            <p>
+              The best way to reach me is by email. I try to reply within a few days.
+              For research collaboration inquiries, please include a brief description
+              of what you have in mind.
+            </p>
+            <p>
+              If you're a student thinking about applying to PhD programs and
+              want an honest perspective on the process, please don't hesitate to
+              write — I remember how hard it was to find candid advice.
+            </p>
+          </div>
+
+          <div class="social-list">
+            <a href="mailto:jiessie@jiessie.science" class="social-row">
+              <span>Email</span>
+              <span class="social-handle">jiessie@jiessie.science</span>
+            </a>
+            <a href="https://twitter.com/jiessietie" target="_blank" class="social-row">
+              <span>Twitter / X</span>
+              <span class="social-handle">@jiessietie</span>
+            </a>
+            <a href="https://bsky.app/profile/jiessietie.bsky.social" target="_blank" class="social-row">
+              <span>Bluesky</span>
+              <span class="social-handle">@jiessietie</span>
+            </a>
+            <a href="https://scholar.google.com" target="_blank" class="social-row">
+              <span>Google Scholar</span>
+              <span class="social-handle">Jiessie Tie</span>
+            </a>
+            <a href="https://orcid.org/0000-0000-0000-0000" target="_blank" class="social-row">
+              <span>ORCID</span>
+              <span class="social-handle">0000-0000-0000-0000</span>
+            </a>
+            <a href="https://github.com/jiessietie" target="_blank" class="social-row">
+              <span>GitHub</span>
+              <span class="social-handle">@jiessietie</span>
+            </a>
+            <a href="jiessie-tie-cv.pdf" target="_blank" class="social-row">
+              <span>CV</span>
+              <span class="social-handle">PDF download</span>
+            </a>
+          </div>
+
+          <div class="response-note">
+            I'm open to research collaborations, science communication projects,
+            invited talks, and mentoring conversations. If something you're working
+            on overlaps with my interests, I'd love to hear about it.
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: FORM -->
+      <div class="content-section reveal">
+        <span class="section-label">Send a message</span>
+        <form id="contactForm">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
+            <div class="form-field">
+              <label for="fname">First name</label>
+              <input type="text" id="fname" placeholder="Jane" required />
+            </div>
+            <div class="form-field">
+              <label for="lname">Last name</label>
+              <input type="text" id="lname" placeholder="Smith" />
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="jane@example.com" required />
+          </div>
+          <div class="form-field">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" placeholder="Research collaboration / Question / Other" />
+          </div>
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="What's on your mind?" required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Send message</button>
+          <p id="contactMsg" class="form-success">✓ Got it — I'll reply soon.</p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="inner">
+      <span>Jiessie Tie · <a href="mailto:jiessie@jiessie.science">jiessie@jiessie.science</a></span>
+      <span>
+        <a href="https://github.com/jiessietie" target="_blank">GitHub</a> ·
+        <a href="https://github.com/jiessietie/jiessietie.github.io" target="_blank">Source</a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

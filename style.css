@@ -1,0 +1,278 @@
+/* ─────────────────────────────────────────
+   JIESSIE.SCIENCE — Minimal Academic Style
+   ───────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600&family=Source+Code+Pro:wght@400;500&display=swap');
+
+:root {
+  --accent:   #3d6e63;
+  --ink:      #1c1c1c;
+  --muted:    #666;
+  --light:    #999;
+  --rule:     #e2e2e2;
+  --bg:       #ffffff;
+  --bg-off:   #f8f7f4;
+  --serif:    'EB Garamond', Georgia, serif;
+  --sans:     'Source Sans 3', system-ui, sans-serif;
+  --mono:     'Source Code Pro', monospace;
+  --max:      900px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+header {
+  border-bottom: 1px solid var(--rule);
+  padding: 0 2rem;
+}
+
+header nav {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 52px;
+}
+
+.nav-name {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.75rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--ink);
+}
+
+/* ── PAGE HERO (interior pages) ── */
+.page-top {
+  border-bottom: 1px solid var(--rule);
+  padding: 3rem 2rem 2.5rem;
+  background: var(--bg-off);
+}
+
+.page-top-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.page-top-label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 0.6rem;
+}
+
+.page-top-title {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+
+.page-top-title em { font-style: italic; }
+
+.page-top-sub {
+  font-size: 0.95rem;
+  color: var(--muted);
+  max-width: 540px;
+  line-height: 1.7;
+}
+
+/* ── MAIN CONTENT SHELL ── */
+.content-shell {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 3rem 2rem 5rem;
+}
+
+/* ── SECTION DIVIDERS ── */
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--light);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--rule);
+  display: block;
+}
+
+.content-section {
+  margin-bottom: 3.5rem;
+}
+
+/* ── TYPOGRAPHY ── */
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin-bottom: 1rem;
+  color: var(--ink);
+  font-size: 0.97rem;
+  line-height: 1.75;
+}
+
+p:last-child { margin-bottom: 0; }
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover { text-decoration: underline; }
+
+strong { font-weight: 600; }
+
+/* ── INLINE LINKS (paper-style) ── */
+.paper-link {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+  border: 1px solid var(--rule);
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  text-decoration: none;
+  margin-right: 0.35rem;
+  transition: background 0.12s, color 0.12s;
+  vertical-align: middle;
+}
+
+.paper-link:hover {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+  text-decoration: none;
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 1.5rem 2rem;
+  font-size: 0.8rem;
+  color: var(--light);
+  font-family: var(--mono);
+  letter-spacing: 0.03em;
+}
+
+footer .inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+footer a { color: var(--light); text-decoration: none; }
+footer a:hover { color: var(--accent); text-decoration: none; }
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── FORM ── */
+.form-field { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1rem; }
+
+.form-field label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.form-field input,
+.form-field textarea {
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: var(--bg);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.form-field input:focus,
+.form-field textarea:focus { border-color: var(--accent); }
+.form-field textarea { resize: vertical; min-height: 120px; }
+
+.btn-submit {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-submit:hover { background: var(--accent); }
+
+.form-success {
+  font-size: 0.875rem;
+  color: var(--accent);
+  display: none;
+  margin-top: 0.75rem;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  header nav { height: auto; padding: 0.75rem 0; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .nav-links { gap: 1rem; }
+  .content-shell { padding: 2rem 1.25rem 4rem; }
+  .page-top { padding: 2rem 1.25rem; }
+}

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Jiessie Tie</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Timeline */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 1.5rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .timeline-item:first-child { border-top: 1px solid var(--rule); }
+
+    .timeline-period {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--light);
+      padding-top: 0.15rem;
+      line-height: 1.4;
+    }
+
+    .timeline-body { min-width: 0; }
+
+    .timeline-degree {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-institution {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-detail {
+      font-size: 0.82rem;
+      color: var(--light);
+    }
+
+    /* Two-col grid for facts */
+    .facts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .fact-item { }
+
+    .fact-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--light);
+      margin-bottom: 0.3rem;
+    }
+
+    .fact-value {
+      font-size: 0.9rem;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    /* Interests */
+    .interests-table { display: flex; flex-direction: column; gap: 0; }
+
+    .interest-row {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 0.75rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.9rem;
+      align-items: baseline;
+    }
+
+    .interest-row:first-child { border-top: 1px solid var(--rule); }
+    .interest-icon { color: var(--light); font-size: 0.85rem; }
+
+    @media (max-width: 500px) {
+      .facts-grid { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 0.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="index.html" class="nav-name">Jiessie Tie</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="page-top">
+    <div class="page-top-inner">
+      <div class="page-top-label">About</div>
+      <h1 class="page-top-title">Jiessie Tie</h1>
+      <p class="page-top-sub">
+        PhD candidate, science communicator, and chronic over-thinker.
+        Based in [Your City].
+      </p>
+    </div>
+  </div>
+
+  <div class="content-shell">
+
+    <div class="content-section reveal">
+      <span class="section-label">Bio</span>
+      <p>
+        I am a PhD candidate in <strong>[Your Field]</strong> at
+        <strong>[Your University]</strong>, working in the
+        <a href="#">[Lab Name]</a> under the supervision of
+        <a href="#">Prof. [Advisor's Name]</a>. My doctoral research focuses on
+        [two to three sentences describing your research in plain language — what
+        question are you asking, what approach do you take, and why does it matter?].
+      </p>
+      <p>
+        Before coming to [Your University], I completed my BSc in
+        [Undergrad Major] at [Undergrad University], where I first became
+        interested in [sub-field or topic that led you here]. I've been
+        asking too many questions ever since.
+      </p>
+      <p>
+        Outside of research, I write about science for people who didn't go to
+        grad school. I believe that explaining something simply is genuinely
+        harder than explaining it technically — and that the effort is worth it.
+      </p>
+    </div>
+
+    <div class="content-section reveal">
+      <span class="section-label">Details</span>
+      <div class="facts-grid">
+        <div class="fact-item">
+          <div class="fact-label">Position</div>
+          <div class="fact-value">PhD Candidate, [Year] year</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-label">Department</div>
+          <div class="fact-value">[Your Department]</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-label">Advisor</div>
+          <div class="fact-value"><a href="#">Prof. [PI's Name]</a></div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-label">Lab</div>
+          <div class="fact-value"><a href="#">[Lab Name]</a></div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-label">Location</div>
+          <div class="fact-value">[Your City, Country]</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-label">Email</div>
+          <div class="fact-value"><a href="mailto:jiessie@jiessie.science">jiessie@jiessie.science</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <span class="section-label">Education</span>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-period">2022–<br/>present</div>
+          <div class="timeline-body">
+            <div class="timeline-degree">PhD in [Your Field]</div>
+            <div class="timeline-institution"><a href="#">[Your University]</a></div>
+            <div class="timeline-detail">Advisor: Prof. [PI's Name] · Expected [Year]</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-period">2021–22</div>
+          <div class="timeline-body">
+            <div class="timeline-degree">Research Assistant</div>
+            <div class="timeline-institution">[Lab or Institution]</div>
+            <div class="timeline-detail">[Brief description of what you did]</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-period">2018–22</div>
+          <div class="timeline-body">
+            <div class="timeline-degree">BSc in [Your Undergrad Major]</div>
+            <div class="timeline-institution"><a href="#">[Undergrad University]</a></div>
+            <div class="timeline-detail">[Honors / Any note worth including]</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <span class="section-label">Research interests</span>
+      <div class="interests-table">
+        <div class="interest-row">
+          <span class="interest-icon">—</span>
+          <span>[Core research area in full: e.g., "Statistical methods for genomic data analysis"]</span>
+        </div>
+        <div class="interest-row">
+          <span class="interest-icon">—</span>
+          <span>[Second area: e.g., "Computational approaches to understanding [phenomenon]"]</span>
+        </div>
+        <div class="interest-row">
+          <span class="interest-icon">—</span>
+          <span>[Third area: e.g., "Applications of [method] to [applied domain]"]</span>
+        </div>
+        <div class="interest-row">
+          <span class="interest-icon">—</span>
+          <span>Science communication and public engagement with research</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <span class="section-label">Outside research</span>
+      <p>
+        I read broadly — mostly science, history, and the occasional novel
+        when the dissertation gets too real. I cook as decompression
+        (recipes are basically protocols). I cycle to campus, mostly for
+        the environment, partially because parking is a nightmare.
+        I talk to my plants. I choose to believe it helps.
+      </p>
+      <p>
+        <a href="jiessie-tie-cv.pdf" download>Download my full CV ↓</a>
+      </p>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="inner">
+      <span>Jiessie Tie · <a href="mailto:jiessie@jiessie.science">jiessie@jiessie.science</a></span>
+      <span>
+        <a href="https://github.com/jiessietie" target="_blank">GitHub</a> ·
+        <a href="https://github.com/jiessietie/jiessietie.github.io" target="_blank">Source</a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
